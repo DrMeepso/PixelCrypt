@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelCrypt</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+</head>
+
+<body>
+    <canvas id="Render"></canvas>
+
+    <div id="Header">
+        <h1>PixelCrypt</h1>
+    </div>
+    <div id="Content">
+        <div id="Preview">
+            <img id="PreviewImage" />
+        </div>
+        <div id="tabHolder">
+            <div id="Encode" class="Tab">
+
+                <h1>Encode</h1>
+
+                <input type="file" id="FileInputEncode" accept="image/*" />
+                <br>
+                <textarea id="EncodeText" placeholder="Text to encode into the image"></textarea>
+                <br>
+                <button id="EncodeButton">Encode</button>
+
+            </div>
+            <div id="Decode" class="Tab">
+
+                <h1>Decode</h1>
+
+                <input type="file" id="FileInputDecode" accept="image/*" />
+                <br>
+                <button id="DecodeButton">Decode</button>
+                <br>
+                <textarea id="DecodedText" placeholder="Decoded text" readonly></textarea>
+
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
