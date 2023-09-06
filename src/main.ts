@@ -1,67 +1,80 @@
 import { EncodeImage, DecodeImage } from "./ashCode";
 
 // encode 
-let FileInputEncode = document.getElementById("FileInputEncode") as HTMLInputElement;
-let FileInputDecode = document.getElementById("FileInputDecode") as HTMLInputElement;
+let FileInput = document.getElementById("FileInputPicker") as HTMLInputElement;
+
+let PickerButton = document.getElementById("FilePickerButton") as HTMLButtonElement;
+let PickerText = document.getElementById("FilePickerLabel") as HTMLLabelElement;
 
 let EncodeButton = document.getElementById("EncodeButton") as HTMLButtonElement;
 let DecodeButton = document.getElementById("DecodeButton") as HTMLButtonElement;
 
 let PreviewImage = document.getElementById("PreviewImage") as HTMLImageElement;
 
-var EncodeImageString = ""
-var DecodeImageString = ""
+var ImageString = ""
 
-FileInputEncode.addEventListener("change", () => {
-    
-    if (FileInputEncode == undefined || FileInputEncode.files == undefined) return;
+PickerButton.addEventListener("click", () => {
+    FileInput.click();
+})
 
-    let File = FileInputEncode.files[0];
+FileInput.addEventListener("change", () => {
+
+    if (FileInput == undefined || FileInput.files == undefined) return;
+
+    let File = FileInput.files[0];
     let Reader = new FileReader();
 
     Reader.onload = (e) => {
         PreviewImage.src = Reader.result as string;
-        EncodeImageString = Reader.result as string;
+        ImageString = Reader.result as string;
+
+        PickerText.innerText = File.name;
+
     }
 
     Reader.readAsDataURL(File);
 
 })
 
+document.ondragover = (e) => {
+    e.preventDefault();
+}
+
+document.ondrop = (e: any) => {
+    e.preventDefault();
+    let file = e.dataTransfer?.files[0];
+    let reader = new FileReader();
+    reader.onload = (e: any) => {
+        PreviewImage.src = reader.result as string;
+        ImageString = reader.result as string;
+
+        PickerText.innerText = file.name;
+    }
+    reader.readAsDataURL(file as Blob);
+}
+
+// encode
+
 let EncodeValue = document.getElementById("EncodeText") as HTMLTextAreaElement
 
 EncodeButton.addEventListener("click", () => {
 
-    EncodeImage(EncodeImageString, EncodeValue?.value).then((result) => {
+    EncodeImage(ImageString, EncodeValue?.value).then((result) => {
         PreviewImage.src = result;
         alert("Done!\nImage on the left is now encoded with your text!\nRight click to save it")
+        ImageString = result;
     })
 
 })
 
 // decode
 
-FileInputDecode.addEventListener("change", () => {
-
-    if (FileInputDecode == undefined || FileInputDecode.files == undefined) return;
-
-    let File = FileInputDecode.files[0];
-    let Reader = new FileReader();
-
-    Reader.onload = (e) => {
-        PreviewImage.src = Reader.result as string;
-        DecodeImageString = Reader.result as string;
-    }
-
-    Reader.readAsDataURL(File);
-
-})
-
 DecodeButton.addEventListener("click", () => {
 
-    DecodeImage(DecodeImageString).then((result) => {
+    DecodeImage(ImageString).then((result) => {
         let area = document.getElementById("DecodedText") as HTMLTextAreaElement
         area.value = result;
+        ImageString = result;
     })
 
 })

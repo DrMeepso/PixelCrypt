@@ -87,3 +87,7 @@ textarea {
     padding: 5px;
 
 }
+
+#FilePicker {
+    height: 150px;
+}

@@ -20,12 +20,16 @@
             <img id="PreviewImage" />
         </div>
         <div id="tabHolder">
+            <div id="FilePicker" class="Tab">
+                <h1>File Picker</h1>
+                <input type="file" id="FileInputPicker" accept="image/*" style="display: none" />
+                <button id="FilePickerButton">Choose File</button>
+                <label for="FileInputPicker" id="FilePickerLabel">No file chosen</label>
+            </div>
             <div id="Encode" class="Tab">
 
                 <h1>Encode</h1>
 
-                <input type="file" id="FileInputEncode" accept="image/*" />
-                <br>
                 <textarea id="EncodeText" placeholder="Text to encode into the image"></textarea>
                 <br>
                 <button id="EncodeButton">Encode</button>
@@ -35,8 +39,6 @@
 
                 <h1>Decode</h1>
 
-                <input type="file" id="FileInputDecode" accept="image/*" />
-                <br>
                 <button id="DecodeButton">Decode</button>
                 <br>
                 <textarea id="DecodedText" placeholder="Decoded text" readonly></textarea>

@@ -110,6 +110,7 @@ export function EncodeImage(image: string, text: string): Promise<string> {
 
             if (encodedText.length > Math.floor(ImageSize / 9)) {
                 console.error("Text is too long!");
+                reject("Text is too long!")
                 return
             }
 
@@ -146,7 +147,9 @@ export function EncodeImage(image: string, text: string): Promise<string> {
                     PixelInfo.r = (Math.floor(PixelInfo.r / 8) > 4 ? Math.floor(PixelInfo.r / 8) - 4 : 0) + charPosition?.x;
                     PixelInfo.g = (Math.floor(PixelInfo.g / 8) > 4 ? Math.floor(PixelInfo.g / 8) - 4 : 0) + charPosition?.y;
                     PixelInfo.b = (Math.floor(PixelInfo.b / 8) > 5 ? Math.floor(PixelInfo.b / 8) - 5 : 0) + charPosition?.z;
-                    PixelInfo.a = Nabors[4].a;
+                    PixelInfo.a = Nabors[4].a
+
+                    if (PixelInfo.a < 255) reject("Image has to be opaque!")
 
                     Context.fillStyle = "rgba(" + PixelInfo.r + "," + PixelInfo.g + "," + PixelInfo.b + "," + PixelInfo.a + ")";
                     Context.fillRect((x * 3) + 1, (y * 3) + 1, 1, 1);
@@ -250,6 +253,8 @@ export function DecodeImage(image: string): Promise<string> {
 
             console.log("done! decode!")
             resolve(atob(OutcodedString))
+            
+            if (HasFinished == false) console.warn("Image is not encoded!")
 
         }
 

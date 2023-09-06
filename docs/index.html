@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PixelCrypt</title>
     
-  <script type="module" crossorigin src="./assets/index-30bc3cae.js"></script>
-  <link rel="stylesheet" href="./assets/index-874ed4c0.css">
+  <script type="module" crossorigin src="./assets/index-36dc5953.js"></script>
+  <link rel="stylesheet" href="./assets/index-d6d36b53.css">
 </head>
 
 <body>
@@ -22,12 +22,16 @@
             <img id="PreviewImage" />
         </div>
         <div id="tabHolder">
+            <div id="FilePicker" class="Tab">
+                <h1>File Picker</h1>
+                <input type="file" id="FileInputPicker" accept="image/*" style="display: none" />
+                <button id="FilePickerButton">Choose File</button>
+                <label for="FileInputPicker" id="FilePickerLabel">No file chosen</label>
+            </div>
             <div id="Encode" class="Tab">
 
                 <h1>Encode</h1>
 
-                <input type="file" id="FileInputEncode" accept="image/*" />
-                <br>
                 <textarea id="EncodeText" placeholder="Text to encode into the image"></textarea>
                 <br>
                 <button id="EncodeButton">Encode</button>
@@ -37,8 +41,6 @@
 
                 <h1>Decode</h1>
 
-                <input type="file" id="FileInputDecode" accept="image/*" />
-                <br>
                 <button id="DecodeButton">Decode</button>
                 <br>
                 <textarea id="DecodedText" placeholder="Decoded text" readonly></textarea>
