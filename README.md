@@ -1,4 +1,4 @@
-# Image to Character Matrix
+# PixelCrypt
 
 This repo contains a script that can hide base64 characters in an image. The script can also decode an image that was encoded using the script. it dose this by using a offset average value to represent the character.
 
