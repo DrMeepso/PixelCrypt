@@ -166,8 +166,6 @@ export function EncodeImage(image: string, text: string): Promise<string> {
 
 }
 
-//EncodeImage("tery.png", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ac bibendum dui. Nullam semper mi non purus tempor mollis. Etiam nec ex congue, ullamcorper ante vitae, aliquam ligula. Nam sit amet neque aliquet, vulputate mi non, auctor ligula. Duis accumsan lorem vel viverra accumsan. Mauris sem lorem, tempor ut malesuada sed, sagittis ut tellus. Nam porta condimentum arcu, vel fringilla orci. Suspendisse vitae enim a nisi fringilla tempus vitae eget lectus. Proin nunc ante, lobortis eu orci in, laoreet congue lorem. Donec eu ligula vitae augue consectetur efficitur. Morbi ut tortor in dolor varius volutpat. Fusce vulputate semper lorem eu pharetra. Vivamus egestas justo eu laoreet dapibus. Cras lobortis eleifend arcu non egestas.")
-
 export function DecodeImage(image: string): Promise<string> {
 
     return new Promise((resolve, reject) => {
@@ -261,10 +259,3 @@ export function DecodeImage(image: string): Promise<string> {
     })
 
 }
-
-setTimeout(() => {
-    let Canvas: HTMLCanvasElement = document.getElementById("Render") as HTMLCanvasElement;
-    // grab the image from the canvas and decode it
-    //DecodeImage(Canvas.toDataURL() as string);
-    //DecodeImage("download (4).png");
-}, 500);
